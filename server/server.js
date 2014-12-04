@@ -3,9 +3,9 @@ var app = express();
 var mongoose = require('mongoose');	
 var bodyParser = require('body-parser');
 var path = require('path');
-var dir = path.resolve(_dirname + '/../client');
+var dir = path.resolve(__dirname + '/../client');
 var morgan = require('morgan');
-var someRouter = express.Router();
+// var someRouter = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
@@ -25,5 +25,5 @@ var server = app.listen(3000, function(){
 
 })
 
-require('some router path')('the name of the router');
+// require('some router path')('the name of the router');
 
