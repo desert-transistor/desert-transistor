@@ -29,8 +29,9 @@ Once the project moves into development, the press release can be used as a touc
 ## Solution ##
   > Confusion Valley creates anonymity and let's the audience express their confusion without explicitly interrupting the lecture.
 
-## "Dynamically modelling my students understanding helped me redirect lecture time more efficiently and resulted in better overall performance" 
-		- Marcus Phillips##
+## Customer Quote ##
+> "Dynamically modelling my students understanding helped me redirect lecture time more efficiently and resulted in better overall performance" 
+		-Marcus Phillips 
 
 ## Getting Started ##
   > Go to the site, sign up, and then click the confused button when you're confused.
