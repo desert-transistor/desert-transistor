@@ -6,7 +6,7 @@ var path = require('path');
 
 var dir = path.resolve(__dirname + '/../client');
 var morgan = require('morgan');
-// var someRouter = express.Router();
+var voteRouter = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
