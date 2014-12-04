@@ -11,7 +11,6 @@ var mongoUrl = require('./config');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 mongoose.connect(mongoUrl);
-
 ///////to see if it's connected to a database
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
