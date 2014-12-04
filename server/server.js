@@ -3,6 +3,7 @@ var app = express();
 var mongoose = require('mongoose');	
 var bodyParser = require('body-parser');
 var path = require('path');
+
 var dir = path.resolve(__dirname + '/../client');
 var morgan = require('morgan');
 // var someRouter = express.Router();
@@ -24,6 +25,7 @@ var server = app.listen(3000, function(){
 	console.log('Student Confusion app is listening at http://%s:%s', host, port);
 
 })
+
 
 // require('some router path')('the name of the router');
 
