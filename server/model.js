@@ -1,1 +1,7 @@
 
+Schema
+	{
+		lectureID
+		createdAt
+		studentID
+	}
