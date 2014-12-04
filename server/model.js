@@ -1,7 +1,9 @@
+var mongoose = require('mongoose');
 
-Schema
-	{
-		lectureID
-		createdAt
-		studentID
-	}
+var confusionSchema = new mongoose.Schema({
+		lectureID:  "lectureID",
+		createdAt:  "createdAt",
+		studentID:  "studentID"
+	});
+
+module.exports = mongoose.model('confusionDB', confusionSchema);
