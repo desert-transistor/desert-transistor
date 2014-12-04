@@ -6,10 +6,11 @@ var path = require('path');
 var dir = path.resolve(__dirname + '/../client');
 var morgan = require('morgan');
 var voteRouter = express.Router();
+var mongoUrl = require('./config');
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost/voteDatabase')
+mongoose.connect(mongoUrl);
 
 ///////to see if it's connected to a database
 var db = mongoose.connection;
@@ -36,3 +37,6 @@ var server = app.listen(3000, function(){
 
 require('./routes')(voteRouter);
 
+//understand serving static files. Why do you do it?
+//store to some persistent area
+//test to see that things can to to the database
