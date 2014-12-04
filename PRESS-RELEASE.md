@@ -1,4 +1,4 @@
-# Project Name #
+# Desert-Transistor #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,29 +16,28 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## Confusion Valley ##
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## Model your audiences level of understanding real-time ##
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Confusion Valley allows lecture audience members to alert the lecturer when they are feeling confused. The lecturer can set a threshold (e.g., 5 confused audience members) to be alerted about the confusion.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Audience members are often hesitant to let the lecturer know that they are confused, which can then lead them to stop paying attention. 
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Confusion Valley creates anonymity and let's the audience express their confusion without explicitly interrupting the lecture.
 
-## Quote from You ##
-  > A quote from a spokesperson in your company.
+## "Dynamically modelling my students understanding helped me redirect lecture time more efficiently and resulted in better overall performance" 
+		- Marcus Phillips##
 
-## How to Get Started ##
-  > Describe how easy it is to get started.
+## Getting Started ##
+  > Go to the site, sign up, and then click the confused button when you're confused.
 
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+<!-- ## Customer Quote ##
+  > Provide a quote from a hypothetical customer that describes how they experienced the benefit. -->
 
-## Closing and Call to Action ##
+<!-- ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+ -->
