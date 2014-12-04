@@ -4,7 +4,7 @@ var Q = require('q');
 
 module.exports = {
 
-	addVotes: function(req, res, next){
+	addVote: function(req, res, next){
 		confusionModel.create(req.body, function(error, data){
 			console.log('@@@@@@@@@@@@@@');
 			console.log(req.body);
