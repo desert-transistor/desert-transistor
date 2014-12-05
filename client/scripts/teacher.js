@@ -1,94 +1,83 @@
-var pulseData = [ 
-  {"date":Date.now()-210000,"value":0.0},
-  {"date":Date.now()-200000,"value":0.2},
-  {"date":Date.now()-150000,"value":0.3},
-  {"date":Date.now()-100000,"value":0.4},
-  {"date":Date.now(),"value":.55},
-];
+var segments = 30, // 
+  interval = 1000, //millesecond delay
+  totalStudents = 60,
+  now = new Date(Date.now()),
+  confused = 0;
+  for (var i = 0, data = []; i < segments; i++) {
+      data[i] = 0 
+  };
 
-var decay = function() {
-  return pulseData[pulseData.length-1].value * .99;
-}
-
-var pulse = function(value) {
-  var obj = {"date":Date.now(),"value": pulseData[pulseData.length-1].value + value || decay()};
-  return obj;
-}
-
-function getDate(d) {
-    return new Date(d.date);
-}
-
-var width = 1200, height = 660;
-
-var y = d3.scale.linear()
-    .domain([0, 1])
-    .range([height,0]);
+var margin = {top: 20, right: 20, bottom: 20, left: 20},
+  width = document.body.offsetWidth - margin.right,
+  height = document.body.offsetHeight - margin.top - margin.bottom;
 
 var x = d3.time.scale()
-    .domain([getDate(pulseData[pulseData.length-4]),getDate(pulseData[pulseData.length-1])])
-    .range([0, width]);
+  .domain([now - segments * interval, now])
+  .range([0, width]); 
+
+var y = d3.scale.linear()
+  .domain([0,totalStudents])
+  .range([height, 0]);
 
 var line = d3.svg.line()
-  .x(function(d) { return x(getDate(d)); })
-  .y(function(d) { return y(d.value); });
-
-// var area = d3.svg.area()
-//     .x(function(d) { return x(getDate(d)); })
-//     .y0(height)
-//     .y1(function(d) { return y(d.value); });
+  .interpolate("basis")
+  .x(function(d, i) { return x(now - (segments - 1 - i) * interval); }) // calculate position once on posting!
+  .y(function(d, i) { return y(d); });
 
 var svg = d3.select("body").append("svg")
-    .attr("width", width + 200) //for clip path
-    .attr("height", height);
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//clip path 
-svg.append("defs").append("clipPath")
-    .attr("id", "clip")
-  .append("rect")
-    .attr("width", width)
-    .attr("height", height);
-
+var axis = svg.append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height + ")") // move to bottom of screen
+  .call(x.axis = d3.svg.axis().scale(x).orient("bottom"));
 
 var path = svg.append("g")
-  .append('path')
-    .attr("d", line(pulseData))
-    .attr("stroke", "orange")
-    .attr("stroke-width", 3)
-    .attr("fill", "none");
+  .append("path")
+    .attr("class","graphline")
+    .datum(data);
 
-// x and y axis
-svg.append("g")
-    .call(d3.svg.axis().scale(x).ticks(d3.time.seconds,20));
-// svg.append("g")
-//      .call(d3.svg.axis().scale(y).orient("right"));
+var increaseConfusion = function(){ 
+    ++confused; 
+};
 
-
-
-
-function socketEvent() {
-
-  pulseData.push(pulse());
-  // push a new data point onto the back
-  // redraw the line
-  x.domain([getDate(pulseData[0]),getDate(pulseData[pulseData.length-1])]);
-  // path.transition()
-  //     .duration(500)
-  //     .ease("elastic")
-  //     .attr("d", line(pulseData))
-  //     .each("end", socketEvent);
-
-  path
-    .attr("d", line(pulseData))
-    .attr("transform", null)
-  .transition()
-    .duration(400)
-    .ease("linear")
-    .attr("transform", "translate(" + -20 + ",0)")
-    .each("end", socketEvent);
-
-  pulseData.shift();
-
+var decayConfused = function() {
+  confused *= .6;
 }
 
-socketEvent();
+function update() {
+  // update the domains
+  now = new Date();
+  x.domain([now - (segments - 2) * interval, now - interval]);
+  // y.domain([0, d3.max(data)]);
+
+  // push the accumulated confused onto the back, and reset the confused
+  data.push(confused);
+  decayConfused();
+
+  // redraw the line
+  path
+    .attr("d", line)
+    .attr("transform", null);
+
+  // slide the x-axis left
+  axis.call(x.axis)
+    .selectAll("text")
+      .attr("y",10)
+      .attr("transform", "rotate(45)")
+      .style("text-anchor", "start");
+
+  // slide the line left
+  path.transition()
+    .duration(interval)
+    .attr("transform", "translate(" -x(now) + ")")
+    .each("end",update);
+
+  // pop the old data point off the front
+  data.shift();
+}
+
+update();
