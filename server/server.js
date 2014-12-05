@@ -13,6 +13,20 @@ var io = require('socket.io')(http);
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
+var voteRouter = express.Router();
+app.use('/api', voteRouter);
+
+///////to see if it's connected to a database
+var mongoUrl = require('./config');
+mongoose.connect(mongoUrl);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('hurrraaaaay!!!');
+});
+//////
+
+
 
 io.on('connection', function(socket){
   console.log('a user connected');
@@ -25,5 +39,8 @@ http.listen(3000, function(){
   console.log('listening on *:3000');
 });
 
+require('./routes')(voteRouter);
 
-
+//understand serving static files. Why do you do it?
+//store to some persistent area
+//test to see that things can to to the database
