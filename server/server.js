@@ -3,6 +3,7 @@ var app = express();
 var path = require('path');
 var dir = path.resolve(__dirname + '/../client');
 var controller = require('./controller');
+var helpers = require('./helpers');
 
 var mongoose = require('mongoose');  
 var bodyParser = require('body-parser');
@@ -35,7 +36,9 @@ io.on('connection', function(socket){
   socket.on('confusion', function(data) {
   	console.log("COOOONNNFUUUSIIIOOOONNNN!");
   	console.log(data);
-  	controller.addVote(data);
+  	helpers.addVote(data, function(data) {
+  		socket.emit('teacherUpdate', data);
+  	});
   })
 });
 
