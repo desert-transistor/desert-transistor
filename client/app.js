@@ -4,10 +4,14 @@ console.log("getting app.js");
 
 document.getElementById('confused').addEventListener('click', function() {
 	socket.emit("confusion", {
-												lectureID: "Marcus' Lecture",
+												lectureID: "NICK",
 												studentID: "ash"
 											});
 	console.log("I done got clicked.");
+})
+
+socket.on("teacherUpdate", function(data){
+    console.log(data);
 })
 
 socket.on('connect', function(){
