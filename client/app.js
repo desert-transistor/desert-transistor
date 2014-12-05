@@ -1,4 +1,4 @@
-var socket = io('http://localhost:3000');
+var socket = io();
 
 console.log("getting app.js");
 
@@ -7,7 +7,8 @@ socket.on('connect', function(){
 });
 
 socket.on('event', function(data){
-	console.log("data: " + data);
+	console.log("data: ");
+	console.log(data);
 });
 
 socket.on('disconnect', function(){
