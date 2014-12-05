@@ -2,6 +2,14 @@ var socket = io();
 
 console.log("getting app.js");
 
+document.getElementById('confused').addEventListener('click', function() {
+	socket.emit("confusion", {
+												lectureID: "Marcus' Lecture",
+												studentID: "ash"
+											});
+	console.log("I done got clicked.");
+})
+
 socket.on('connect', function(){
 	console.log("socket connected");
 });

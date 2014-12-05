@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var dir = path.resolve(__dirname + '/../client');
+var controller = require('./controller');
+var helpers = require('./helpers');
 
 var mongoose = require('mongoose');  
 var bodyParser = require('body-parser');
@@ -26,12 +28,21 @@ db.once('open', function callback () {
 });
 //////
 
-
+console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 
 io.on('connection', function(socket){
   console.log('a user connected');
   io.emit("event", {it: "works"});
+  socket.on('confusion', function(data) {
+  	console.log("COOOONNNFUUUSIIIOOOONNNN!");
+  	console.log(data);
+  	helpers.addVote(data, function(data) {
+  		socket.emit('teacherUpdate', data);
+  	});
+  })
 });
+
+console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
 
 app.use(express.static(dir));
 
