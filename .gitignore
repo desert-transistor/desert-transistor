@@ -28,6 +28,7 @@ dist/
 node_modules/
 bower_components/
 
+.DS_Store
 
 #config file
 server/config.js

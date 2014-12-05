@@ -1,0 +1,19 @@
+{
+  "name": "desert-transistor-client",
+  "version": "0.0.0",
+  "homepage": "https://github.com/desert-transistor/desert-transistor",
+  "authors": [
+    "Nick Mandel <nrmandel@ucdavis.edu>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "socket.io-client": "https://github.com/Automattic/socket.io-client.git#~1.2.1"
+  }
+}

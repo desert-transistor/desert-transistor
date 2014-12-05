@@ -1,17 +1,24 @@
 var express = require('express');
 var app = express();
-var mongoose = require('mongoose');	
-var bodyParser = require('body-parser');
 var path = require('path');
 var dir = path.resolve(__dirname + '/../client');
-var morgan = require('morgan');
-var voteRouter = express.Router();
-var mongoUrl = require('./config');
 
+var mongoose = require('mongoose');  
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
-mongoose.connect(mongoUrl);
+var voteRouter = express.Router();
+app.use('/api', voteRouter);
+
 ///////to see if it's connected to a database
+var mongoUrl = require('./config');
+mongoose.connect(mongoUrl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
@@ -19,20 +26,18 @@ db.once('open', function callback () {
 });
 //////
 
-app.use(morgan('dev'));
+
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  io.emit("event", {it: "works"});
+});
+
 app.use(express.static(dir));
 
-app.use('/api', voteRouter);
-
-var server = app.listen(3000, function(){
-
-	var host = server.address().address;
-	var port = server.address().port;
-
-	console.log('Student Confusion app is listening at http://%s:%s', host, port);
-
-})
-
+http.listen(3000, function(){
+  console.log('listening on *:3000');
+});
 
 require('./routes')(voteRouter);
 
