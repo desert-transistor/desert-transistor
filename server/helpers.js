@@ -1,7 +1,5 @@
 var confusionModel = require('./model.js');
 
-	
-
 exports.addVote = function (data, callback) {
 	callback = callback || function () {};
 	confusionModel.create(data, function (err, data) {
@@ -11,12 +9,13 @@ exports.addVote = function (data, callback) {
 }
 
 
-getVotes: function(data, callback){
+exports.getVotes = function(callback){
 	callback = callback || function () {};
-		confusionModel.find( function(err){
-			if(error) throw err;
-			callback(data);
-			}
-		})
-	}
+	confusionModel.find(function(err, data){
+		if(err) throw err;
+		callback(data);
+	})
+}
+
+
 				// res.send(500);

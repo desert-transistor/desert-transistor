@@ -28,7 +28,7 @@ db.once('open', function callback () {
 });
 //////
 
-
+console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 
 io.on('connection', function(socket){
   console.log('a user connected');
@@ -41,6 +41,8 @@ io.on('connection', function(socket){
   	});
   })
 });
+
+console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
 
 app.use(express.static(dir));
 

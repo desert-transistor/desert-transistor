@@ -6,7 +6,6 @@ var Q = require('q');
 module.exports = {
 
 	addVote: function(req, res, next){
-
 		helpers.addVote(req.body, function(data){
 			console.log('success');
 			res.send(data);
@@ -14,12 +13,10 @@ module.exports = {
 	},
 
 	getVotes: function(req, res, next){
-		
-		helpers.getVotes( function(data){
+		helpers.getVotes(function(data){
 			console.log('success');
 			res.send(data);
-			}
 		})
 	}
-
 }
+
