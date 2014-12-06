@@ -1,83 +1,81 @@
-var segments = 30, // 
-  interval = 1000, //millesecond delay
-  totalStudents = 60,
-  now = new Date(Date.now()),
-  confused = 0;
-  for (var i = 0, data = []; i < segments; i++) {
-      data[i] = 0 
-  };
+var students = 30;
+//define the dimensons of our canvas
+  width = document.body.offsetWidth,
+  height = document.body.offsetHeight,
+  nodes = [],
+//collection of focal points create function. 
+  foci = [
+    { 
+      x: width/2, 
+      y: height/2, 
+      title: "confused"
+    }
+  ];
+var colorScale= d3.scale.category10();
 
-var margin = {top: 20, right: 20, bottom: 20, left: 20},
-  width = document.body.offsetWidth - margin.right,
-  height = document.body.offsetHeight - margin.top - margin.bottom;
+//svg container to hold the visualization, specifying a dynamic width/height
+var canvas = d3.select("body").append("svg")
+  .attr("width",width)
+  .attr("height",height);
 
-var x = d3.time.scale()
-  .domain([now - segments * interval, now])
-  .range([0, width]); 
+var visual = d3.layout.force()
+  .nodes(nodes)
+  .links([])
+  .size([width,height])
+  .start()
+  .on("tick",tick);
 
-var y = d3.scale.linear()
-  .domain([0,totalStudents])
-  .range([height, 0]);
+//create reference to all svg:circles
+var node = canvas.selectAll("circle");
 
-var line = d3.svg.line()
-  .interpolate("basis")
-  .x(function(d, i) { return x(now - (segments - 1 - i) * interval); }) // calculate position once on posting!
-  .y(function(d, i) { return y(d); });
+//create text nodes for each group
+foci.forEach(function(group,index){
+  canvas.append("text")
+    .attr("class","title")
+    .attr("dx",group.x)
+    .attr("dy",group.y)
+    .style("text-anchor","start")
+    .style("fill", function(d) { return colorScale(index); });
+  canvas.append("circle")
+    .attr("r",200)
+    .attr("cx",group.x)
+    .attr("cy",group.y)
+    .style("fill","none")
+    .style("stroke",function(d) { return colorScale(index); })
+});
 
-var svg = d3.select("body").append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+function tick(e) {
+  var k = .1 * e.alpha;
 
-var axis = svg.append("g")
-  .attr("class", "x axis")
-  .attr("transform", "translate(0," + height + ")") // move to bottom of screen
-  .call(x.axis = d3.svg.axis().scale(x).orient("bottom"));
+  // Push nodes toward their designated focus.
+  nodes.forEach(function(o, i) {
+    o.y += (foci[o.group].y - o.y) * k;
+    o.x += (foci[o.group].x - o.x) * k;
+  });
 
-var path = svg.append("g")
-  .append("path")
-    .attr("class","graphline")
-    .datum(data);
-
-var increaseConfusion = function(){ 
-    ++confused; 
-};
-
-var decayConfused = function() {
-  confused *= .6;
+  node
+    .attr("cx", function(d) { return d.x; })
+    .attr("cy", function(d) { return d.y; });
 }
 
-function update() {
-  // update the domains
-  now = new Date();
-  x.domain([now - (segments - 2) * interval, now - interval]);
-  // y.domain([0, d3.max(data)]);
 
-  // push the accumulated confused onto the back, and reset the confused
-  data.push(confused);
-  decayConfused();
+var increaseConfusion = function(number){
+  nodes.push({
+    group: number
+  });
 
-  // redraw the line
-  path
-    .attr("d", line)
-    .attr("transform", null);
+  visual.start();
 
-  // slide the x-axis left
-  axis.call(x.axis)
-    .selectAll("text")
-      .attr("y",10)
-      .attr("transform", "rotate(45)")
-      .style("text-anchor", "start");
+  node = node.data(nodes);
 
-  // slide the line left
-  path.transition()
-    .duration(interval)
-    .attr("transform", "translate(" -x(now) + ")")
-    .each("end",update);
+  d3.select("text")
+    .text(nodes.length);
 
-  // pop the old data point off the front
-  data.shift();
+  node.enter().append("circle")
+    .attr("r",10)
+    .attr("class","node")
+    .attr("cx", function(d) { return d.x; }) // initialized to random x/y by force layout calc
+    .attr("cy", function(d) { return d.y; })
+    .style("fill", function(d) { return colorScale(d.group); });
 }
 
-update();

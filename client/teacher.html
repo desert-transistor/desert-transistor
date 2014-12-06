@@ -17,7 +17,15 @@
 </head>
   <body>
   <script src="./scripts/teacher.js" charset="utf-8"></script>
-  <button onclick="increaseConfusion()">add pulse</button>
 
+<!--   <button onclick="increaseConfusion(0)">add group 1</button>
+  <button onclick="increaseConfusion(1)">add group 2</button> -->
+  <script type="text/javascript">
+  var socket = io();
+
+  socket.on("teacherUpdate", function(data){
+      increaseConfusion(1);
+  })
+  </script>
   </body>
 </html>
