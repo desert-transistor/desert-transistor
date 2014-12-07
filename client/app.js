@@ -10,10 +10,6 @@ document.getElementById('confused').addEventListener('click', function() {
 	console.log("I done got clicked.");
 })
 
-
-
-
-
 socket.on('connect', function(){
 	console.log("socket connected");
 });
