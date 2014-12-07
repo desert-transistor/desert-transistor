@@ -37,7 +37,9 @@ io.on('connection', function(socket){
   	console.log("COOOONNNFUUUSIIIOOOONNNN!");
   	console.log(data);
   	helpers.addVote(data, function(data) {
-  		socket.emit('teacherUpdate', data);
+  		console.log("DOOR!");
+      io.sockets.emit('teacherUpdate', data);
+      console.log("dddddddd!");
   	});
   })
 });

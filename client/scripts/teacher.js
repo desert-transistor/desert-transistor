@@ -40,8 +40,9 @@ var path = svg.append("g")
     .attr("class","graphline")
     .datum(data);
 
-var increaseConfusion = function(){ 
-    ++confused; 
+var increaseConfusion = function(array){ 
+    confused+= array.length; 
+    console.log(confused);
 };
 
 var decayConfused = function() {
