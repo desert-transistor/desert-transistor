@@ -4,6 +4,7 @@ var path = require('path');
 var dir = path.resolve(__dirname + '/../client');
 var controller = require('./controller');
 var helpers = require('./helpers');
+var port = process.env.PORT || 3000;
 
 var mongoose = require('mongoose');  
 var bodyParser = require('body-parser');
@@ -48,7 +49,7 @@ console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
 
 app.use(express.static(dir));
 
-http.listen(3000, function(){
+http.listen(port, function(){
   console.log('listening on *:3000');
 });
 
