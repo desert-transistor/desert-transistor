@@ -1,1 +1,5 @@
-login.html
+<div ng-controller="AuthController">
+	<input type="text" placeholder="Enter name" ng-model="text" required>
+	{{ student.studentName }}
+	<button ng-click="student.createName(text)">Submit</button>
+</div>

@@ -1,11 +1,15 @@
-console.log("1111111")
 angular
 	  .module('StudentController', [])
-	  .controller('StudentController', ['$scope', 'studentFactory', function($scope, studentFactory){
+	  .controller('StudentController', ['$scope', 'studentFactory', 'authFactory', function($scope, studentFactory, authFactory){
 
 		studentFactory.connect();
 
-		console.log("adfadsf");
+    $scope.student = authFactory;
+
+    $scope.test = function(){
+    	console.log($scope.student);
+    	console.log($scope.student.studentName);
+    }
 
 		$scope.confusedStudent = studentFactory.confusedStudent;
 	  

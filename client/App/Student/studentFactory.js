@@ -21,11 +21,11 @@ angular
 				});
 			}
 
-			function confusedStudent (){
+			function confusedStudent (name){
 
 				socket.emit("confusion", {
 					lectureID: "RECURSION",
-					studentID: "THOMAS"
+					studentID: name
 				}); 
 				console.log("I done got clicked.");
 			}

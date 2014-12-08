@@ -4,6 +4,8 @@ angular.module('app', [
   'studentFactory',
   'TeacherController',
   'teacherFactory',
+  'AuthController', 
+  'authFactory'
 ])
 
 
@@ -11,6 +13,12 @@ angular.module('app', [
   
   $stateProvider
   
+  .state('auth', {
+    url: '/login',
+    templateUrl: 'App/Auth/login.html',
+    controller: 'AuthController'
+  })
+
   .state('student', {
     url: '/',
     templateUrl: 'App/Student/student.html',
