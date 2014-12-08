@@ -1,1 +1,34 @@
-HELLO
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Confusion Pulse</title>
+</head>
+
+<body ng-app="app">
+  
+  <div ui-view></div>
+
+  <!-- components -->
+  <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+  <script src="bower_components/socket.io-client/socket.io.js"></script>
+  
+  <!-- angular -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  
+  <!-- students -->
+  <script src="App/Student/studentCtrl.js"></script>
+  <script src="App/Student/studentFactory.js"></script>
+
+  <!-- teacher -->
+  <script src="teacher.js"></script>
+  <script src="App/Teacher/teacherCtrl.js"></script>
+  <script src="App/Teacher/teacherFactory.js"></script>  
+  
+  <!-- app.js -->
+  <script src="app.js"></script>
+
+</body>
+</html>

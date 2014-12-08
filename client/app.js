@@ -1,24 +1,28 @@
-var socket = io();
+angular.module('app', [
+  'ui.router',
+  'StudentController',
+  'studentFactory',
+  'TeacherController',
+  'teacherFactory',
+])
 
-console.log("getting app.js");
 
-document.getElementById('confused').addEventListener('click', function() {
-	socket.emit("confusion", {
-		lectureID: "RECURSION",
-		studentID: "THOMAS"
-	}); 
-	console.log("I done got clicked.");
+.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  
+  $stateProvider
+  
+  .state('student', {
+    url: '/',
+    templateUrl: 'App/Student/student.html',
+    controller: 'StudentController'
+  })
+  
+  .state('teacher', {
+    url: '/teacher',
+    templateUrl: 'App/Teacher/teacher.html',
+    controller: 'TeacherController'
+  });
+  
+  $urlRouterProvider.otherwise('/');
+
 })
-
-socket.on('connect', function(){
-	console.log("socket connected");
-});
-
-socket.on('event', function(data){
-	console.log("data: ");
-	console.log(data);
-});
-
-socket.on('disconnect', function(){
-	console.log("socket DISconnected");
-});
