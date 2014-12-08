@@ -74,7 +74,8 @@ function update() {
   // slide the line left
   path.transition()
     .duration(interval)
-    .attr("transform", "translate(" -x(now) + ")")
+    .ease("linear")
+    .attr("transform", "translate(" + x(now - (segments - 1) * interval) + ")")
     .each("end",update);
 
   // pop the old data point off the front

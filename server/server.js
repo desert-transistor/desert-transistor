@@ -29,8 +29,6 @@ db.once('open', function callback () {
 });
 //////
 
-console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-
 io.on('connection', function(socket){
   console.log('a user connected');
   io.emit("event", {it: "works"});
@@ -45,8 +43,6 @@ io.on('connection', function(socket){
   })
 });
 
-console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-
 app.use(express.static(dir));
 
 http.listen(port, function(){
@@ -54,7 +50,3 @@ http.listen(port, function(){
 });
 
 require('./routes')(voteRouter);
-
-//understand serving static files. Why do you do it?
-//store to some persistent area
-//test to see that things can to to the database
