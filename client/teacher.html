@@ -11,21 +11,22 @@
 <head>
   <title>teacher graphs</title>
   <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="bower_components/socket.io-client/socket.io.js" charset="utf-8"></script>
+  <link rel="stylesheet" type="text/css" href="teacher.css">
 
 
 </head>
   <body>
   <script src="./scripts/teacher.js" charset="utf-8"></script>
 
-<!--   <button onclick="increaseConfusion(0)">add group 1</button>
-  <button onclick="increaseConfusion(1)">add group 2</button> -->
-  <script type="text/javascript">
-  var socket = io();
+<!-- <button onclick="increaseConfusion()">X</button>
+  <button onclick="newConnection()">connect</button> --> -->
+  // <script type="text/javascript">
+  // var socket = io();
 
-  socket.on("teacherUpdate", function(data){
-      increaseConfusion(1);
-  })
+  // socket.on("teacherUpdate", function(data){
+  //     increaseConfusion();
+  // })
   </script>
   </body>
 </html>

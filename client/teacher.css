@@ -1,0 +1,16 @@
+
+body {
+  width: 1000;
+  margin: 0 auto;
+  background-color: 
+}
+
+svg {
+  border: 1px solid grey;
+}
+
+.title {
+  font-size: 200px;
+  opacity: 0.5;
+  font-family: Helvetica;
+}

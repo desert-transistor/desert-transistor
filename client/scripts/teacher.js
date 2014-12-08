@@ -1,4 +1,5 @@
 var students = 30;
+  total=0,
 //define the dimensons of our canvas
   width = document.body.offsetWidth,
   height = document.body.offsetHeight,
@@ -8,6 +9,11 @@ var students = 30;
     { 
       x: width/2, 
       y: height/2, 
+      title: "not"
+    },
+    { 
+      x: width/6, 
+      y: height/6, 
       title: "confused"
     }
   ];
@@ -20,7 +26,6 @@ var canvas = d3.select("body").append("svg")
 
 var visual = d3.layout.force()
   .nodes(nodes)
-  .links([])
   .size([width,height])
   .start()
   .on("tick",tick);
@@ -69,13 +74,21 @@ var increaseConfusion = function(number){
   node = node.data(nodes);
 
   d3.select("text")
-    .text(nodes.length);
+    .text(++total);
 
   node.enter().append("circle")
     .attr("r",10)
     .attr("class","node")
     .attr("cx", function(d) { return d.x; }) // initialized to random x/y by force layout calc
     .attr("cy", function(d) { return d.y; })
-    .style("fill", function(d) { return colorScale(d.group); });
+    .style("fill", function(d) { return colorScale(d.group); })
+    .transition()
+      .delay(10000)
+      .attr("r", 1e-6)
+      .each("end", function() { 
+        nodes.shift();
+        d3.select("text").text(--total); 
+      })
+      .remove();
 }
 
