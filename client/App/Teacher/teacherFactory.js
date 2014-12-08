@@ -1,6 +1,6 @@
 angular
 	  .module('teacherFactory', [])
-	  .factory('teacherFactory',[ function(){
+	  .factory('teacherFactory', [ function(){
 
 		var socket = io();
 

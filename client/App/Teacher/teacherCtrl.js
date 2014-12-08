@@ -1,20 +1,16 @@
 console.log("22222222")
 angular
 	  .module('TeacherController', [])
-	  .controller('TeacherController', ['$scope', 'teacherFactory', function($scope, teacherFactory){
+	  .controller('TeacherController', ['$scope', 'teacherFactory', 'teacherGraphFactory', function($scope, teacherFactory, teacherGraphFactory){
 
 		$scope.confusedStudents = teacherFactory.confusedStudents;
 
 		teacherFactory.updateTeacher();
 
+		teacherGraphFactory.teacherGraph();
+
 		$scope.updateTeacher = teacherFactory.updateTeacher;
 
-		// studentFactory.connect();
-
-		// console.log("adfadsf");
-
-		// $scope.confusedStudent = studentFactory.confusedStudent;
-	  
 	  }])
 
 
