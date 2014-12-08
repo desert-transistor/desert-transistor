@@ -2,12 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
   <title>Confusion Pulse</title>
 </head>
+
 <body ng-app="app">
+  
+  <div ui-view></div>
+
+  <script src="bower_components/socket.io-client/socket.io.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="App/Student/studentCtrl.js"></script>
+  <script src="App/Student/studentFactory.js"></script>
   <script src="app.js"></script>
-  
+
 </body>
 </html>

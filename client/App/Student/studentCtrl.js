@@ -1,13 +1,13 @@
-
+console.log("1111111")
 angular
-	  .module('app')
-	  .controller('StudentController', studentController)
+	  .module('StudentController', [])
+	  .controller('StudentController', ['$scope', 'studentFactory', function($scope, studentFactory){
 
-StudentController.$inject = ['$scope', 'studentFactory'];
+		studentFactory.connect();
 
-function StudentController($scope, studentFactory){
+		console.log("adfadsf");
 
-	$scope.connect = studentFactory.connect;
+		$scope.confusedStudent = studentFactory.confusedStudent;
+	  
+	  }])
 
-	$scope.confusedStudent = studentFactory.confusedStudent;
-}

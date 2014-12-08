@@ -1,34 +1,42 @@
 angular
-	  .module('app')
-	  .factory('studentFactory', studentFactory)
+	  .module('studentFactory', [])
+	  .factory('studentFactory',[ function(){
 
-		var socket = io();
+			var socket = io();
 
-		console.log("getting app.js");
+			console.log("getting app.js");
 
-		function connect (){
-			socket.on('connect', function(){
-				console.log("socket connected");
-			});
-		
-			socket.on('disconnect', function(){
-				console.log("socket DISconnected");
-			});
+			function connect (){
+				socket.on('connect', function(){
+					console.log("socket connected");
+				});
+			
+				socket.on('disconnect', function(){
+					console.log("socket DISconnected");
+				});
 
-			socket.on('event', function(data){
-				console.log("data: ");
-				console.log(data);
-			});
-		}
+				socket.on('event', function(data){
+					console.log("data: ");
+					console.log(data);
+				});
+			}
 
-		function confusedStudent (){
+			function confusedStudent (){
 
-			socket.emit("confusion", {
-				lectureID: "RECURSION",
-				studentID: "THOMAS"
-			}); 
-			console.log("I done got clicked.");
-		}
+				socket.emit("confusion", {
+					lectureID: "RECURSION",
+					studentID: "THOMAS"
+				}); 
+				console.log("I done got clicked.");
+			}
+
+			return {
+				connect: connect,
+				confusedStudent: confusedStudent
+			};
+	  	
+	  }]);
+
 
 
 		
