@@ -83,7 +83,6 @@ var newConnection = function(){
     .style("fill", function(d) { return colorScale(d.group); })
     .transition()
       .delay(10000)
-      .attr("r", 1e-6)
       .each("end", function() { 
         nodes.shift();
         d3.select("text").text(--total); 
@@ -92,10 +91,8 @@ var newConnection = function(){
 }
 
 
-var increaseConfusion = function(number){
-  nodes.push({
-    group: number
-  });
+var increaseConfusion = function(){
+  nodes[nodes.length-1].group = 1;
 
   visual.start();
 
@@ -113,9 +110,9 @@ var increaseConfusion = function(number){
     .transition()
       .delay(10000)
       .attr("r", 1e-6)
-      .each("end", function() { 
+      .each("end", function(d,i) { 
         nodes.shift();
-        d3.select("text").text(--total); 
+        d3.select("text").text(total); 
       })
       .remove();
 }
