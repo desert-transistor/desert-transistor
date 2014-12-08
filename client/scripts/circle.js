@@ -24,7 +24,27 @@ var newConnection = function() {
   nodes.push(node);
 }
 
+var canvas = d3.select("body").append("svg")
+  .attr("width",width)
+  .attr("height",height);
 
+var visual = d3.layout.force()
+  .nodes(nodes)
+  .size([width,height])
+  .start()
+  .on("tick",tick);
 
+function tick(e) {
+  var k = .1 * e.alpha;
 
+  // Push nodes toward their designated focus.
+  nodes.forEach(function(o, i) {
+    o.y += (foci[o.group].y - o.y) * k;
+    o.x += (foci[o.group].x - o.x) * k;
+  });
+
+  node
+    .attr("cx", function(d) { return d.x; })
+    .attr("cy", function(d) { return d.y; });
+}
 

@@ -1,20 +1,22 @@
-var students = 30;
-  total=0,
+var total=0,
 //define the dimensons of our canvas
   width = document.body.offsetWidth,
   height = document.body.offsetHeight,
-  nodes = [],
+  nodes = [];
+
 //collection of focal points create function. 
   foci = [
     { 
       x: width/2, 
       y: height/2, 
-      title: "not"
+      title: "confused",
+      radius: 200
     },
     { 
-      x: width/6, 
-      y: height/6, 
-      title: "confused"
+      x: 100, 
+      y: 100, 
+      title: "connected",
+      radius: 0
     }
   ];
 var colorScale= d3.scale.category10();
@@ -39,10 +41,11 @@ foci.forEach(function(group,index){
     .attr("class","title")
     .attr("dx",group.x)
     .attr("dy",group.y)
+    .text(group.title)
     .style("text-anchor","start")
     .style("fill", function(d) { return colorScale(index); });
   canvas.append("circle")
-    .attr("r",200)
+    .attr("r",group.radius)
     .attr("cx",group.x)
     .attr("cy",group.y)
     .style("fill","none")
@@ -61,6 +64,31 @@ function tick(e) {
   node
     .attr("cx", function(d) { return d.x; })
     .attr("cy", function(d) { return d.y; });
+}
+
+var newConnection = function(){
+  nodes.push({
+    group: 1
+  });
+
+  visual.start();
+
+  node = node.data(nodes);
+
+  node.enter().append("circle")
+    .attr("r",10)
+    .attr("class","node")
+    .attr("cx", function(d) { return d.x; }) // initialized to random x/y by force layout calc
+    .attr("cy", function(d) { return d.y; })
+    .style("fill", function(d) { return colorScale(d.group); })
+    .transition()
+      .delay(10000)
+      .attr("r", 1e-6)
+      .each("end", function() { 
+        nodes.shift();
+        d3.select("text").text(--total); 
+      })
+      .remove();
 }
 
 
