@@ -6,14 +6,20 @@ angular.module('app', [
 
 
 .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-  $stateProvider.state('student', {
+  
+  $stateProvider
+  
+  .state('student', {
     url: '/',
     templateUrl: 'App/Student/student.html',
     controller: 'StudentController'
-  }).state('teacher', {
+  })
+  .state('teacher', {
     url: '/teacher',
     templateUrl: 'App/Teacher/teacher.html',
     controller: 'App/Teacher/teacherCtrl.js'
   });
+  
   $urlRouterProvider.otherwise('/');
+
 })
