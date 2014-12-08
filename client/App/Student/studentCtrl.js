@@ -7,7 +7,7 @@ angular
     $scope.student = authFactory;
 
     $scope.confusedStudent = function() {
-			studentFactory.confusedStudent ($scope.student.studentName);    	
+			studentFactory.confusedStudent ($scope.student.studentName);   	
     }
 	  
 	  }])

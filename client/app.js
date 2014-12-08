@@ -14,13 +14,13 @@ angular.module('app', [
   $stateProvider
   
   .state('auth', {
-    url: '/login',
+    url: '/',
     templateUrl: 'App/Auth/login.html',
     controller: 'AuthController'
   })
 
   .state('student', {
-    url: '/',
+    url: '/student',
     templateUrl: 'App/Student/student.html',
     controller: 'StudentController'
   })
