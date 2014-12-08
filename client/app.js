@@ -1,7 +1,9 @@
 angular.module('app', [
   'ui.router',
   'StudentController',
-  'studentFactory'
+  'studentFactory',
+  'TeacherController',
+  'teacherFactory',
 ])
 
 
@@ -14,10 +16,11 @@ angular.module('app', [
     templateUrl: 'App/Student/student.html',
     controller: 'StudentController'
   })
+  
   .state('teacher', {
     url: '/teacher',
     templateUrl: 'App/Teacher/teacher.html',
-    controller: 'App/Teacher/teacherCtrl.js'
+    controller: 'TeacherController'
   });
   
   $urlRouterProvider.otherwise('/');
