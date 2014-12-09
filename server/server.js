@@ -31,13 +31,15 @@ db.once('open', function callback () {
 
 io.on('connection', function(socket){
   console.log('a user connected');
-  io.emit("event", {it: "works"});
+
+
+  io.sockets.emit("teacher:newStudent", {});
   socket.on('confusion', function(data) {
   	console.log("COOOONNNFUUUSIIIOOOONNNN!");
   	console.log(data);
   	helpers.addVote(data, function(data) {
   		console.log("DOOR!");
-      io.sockets.emit('teacherUpdate', data);
+      io.sockets.emit('teacher:update', data);
       console.log("dddddddd!");
   	});
   })

@@ -8,11 +8,9 @@ angular
 
 		function updateTeacher (){
 
-			socket.on("teacherUpdate", function(data){
-			    console.log("confusedStudents");
+			socket.on("teacher:update", function(data){
 			    confusedStudents.push(data);
-			    increaseConfusion(confusedStudents);
-			    console.log(confusedStudents);
+			    calculateConfusion(confusedStudents);
 			})
 		}
 
