@@ -2,24 +2,18 @@ angular
   .module('teacherFactory', [])
   .factory('teacherFactory',[ function(){
 
-	var socket = io();
+		var socket = io();
 
-	var confusedStudents = [];
+		var confusedStudents = [];
 
-	function updateTeacher (){
-
-		socket.on("teacherUpdate", function(data){
-	    console.log("confusedStudents");
-	    confusedStudents.push(data);
-	    increaseConfusion(confusedStudents);
-	    console.log(confusedStudents[confusedStudents.length - 1].studentID);
+		socket.on("teacher:update", function(data){
+		    confusedStudents.push(data);
+		    calculateConfusion(confusedStudents);
+		    console.log(data.studentID);
 		})
-	}
 
-  	return {
-  		updateTeacher: updateTeacher,
-  		confusedStudents: confusedStudents
-  	};
+		return {
+			confusedStudents: confusedStudents
+		};
 
-  }]);
-
+	}]);

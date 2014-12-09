@@ -2,6 +2,7 @@ var segments = 30, //
   interval = 1000, //millesecond delay
   totalStudents = 60,
   now = new Date(Date.now()),
+  confusionCollection = [];
   confused = 0;
   for (var i = 0, data = []; i < segments; i++) {
       data[i] = 0 
@@ -40,14 +41,19 @@ var path = svg.append("g")
     .attr("class","graphline")
     .datum(data);
 
-var increaseConfusion = function(array){ 
-    confused+= array.length; 
-    console.log(confused);
+var calculateConfusion = function(array){
+    if (array) {
+      confusionCollection = array;
+    }
+    if (confusionCollection.length){
+      confused = Math.min(confusionCollection.map(function(confusionObj) {
+        var elapsed = (new Date()) - (new Date(confusionObj.createdAt));
+        return (elapsed < 3000) ? 1 : (3000/elapsed);
+      }).reduce(function(a, b) {
+        return a + b; 
+      }), totalStudents);
+    }
 };
-
-var decayConfused = function() {
-  confused *= .6;
-}
 
 function update() {
   // update the domains
@@ -56,8 +62,9 @@ function update() {
   // y.domain([0, d3.max(data)]);
 
   // push the accumulated confused onto the back, and reset the confused
+  calculateConfusion();
   data.push(confused);
-  decayConfused();
+  // console.log(confused);
 
   // redraw the line
   path
