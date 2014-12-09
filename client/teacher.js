@@ -46,12 +46,12 @@ var calculateConfusion = function(array){
       confusionCollection = array;
     }
     if (confusionCollection.length){
-      confused = Math.min((confusionCollection.map(function(confusionObj) {
+      confused = Math.min(confusionCollection.map(function(confusionObj) {
         var elapsed = (new Date()) - (new Date(confusionObj.createdAt));
         return (elapsed < 3000) ? 1 : (3000/elapsed);
       }).reduce(function(a, b) {
         return a + b; 
-      }) / 2), totalStudents);
+      }), totalStudents);
     }
 };
 
