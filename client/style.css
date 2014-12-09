@@ -3,23 +3,48 @@
 }
 
 #confused {
-	display:block;
-	margin: 0 auto;
-	margin-top: 100px;
-	vertical-align: middle;
-	font-size: 40px;
-	border-radius: 40px;
-	padding: 20px 40px 20px 40px;;
-	background: #fc3c3c;
-	background-image: linear-gradient(to bottom, #fc3c3c, #a31818);
-	border: none;
-	font-family: Courier;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 0px 0px #1c1b18;
+  background:linear-gradient(to bottom, #a73f2d 5%, #b54b3a 100%);
+  background-color:#a73f2d;
+  border:1px solid #82796d;
+  border-radius:30px;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:arial;
+  font-size:40px;
+  font-weight:bold;
+  padding:20px 35px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #7a2a1d;
 }
 
 #confused:hover {
-  background: #f70000;
-  background-image: linear-gradient(to bottom, #ff3c00, #f70000);
+  background-color:#b34332;
+  background:linear-gradient(to bottom, #b54b3a 5%, #a73f2d 100%);
   cursor: pointer;
+}
+
+#loginInterface {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#loginBtn {
+  font-size: 20px;
+  padding: 10px 15px;
+  margin-left: 20px;
+}
+
+#loginInp {
+  font-size: 20px;
+  padding: 10px 15px;
 }
 
 *:focus {
@@ -27,6 +52,8 @@
 }
 
 html, body {
+  position: relative;
+  background-color: #b3b0ad;
   height: 100%;
   width: 100%;
 }
