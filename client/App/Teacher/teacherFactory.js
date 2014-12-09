@@ -6,20 +6,31 @@ angular
 
 		var confusedStudents = [];
 
-		function updateTeacher (){
-
 			socket.on("teacherUpdate", function(data){
-			    console.log("confusedStudents");
 			    confusedStudents.push(data);
 			    increaseConfusion(confusedStudents);
 			    console.log(confusedStudents);
 			})
-		}
-
+		
 	  	return {
-	  		updateTeacher: updateTeacher,
 	  		confusedStudents: confusedStudents
 	  	};
 
 	  }]);
 
+	  		
+
+
+
+
+
+
+
+
+
+	  		// updateTeacher: updateTeacher,
+
+		// function updateTeacher (){
+
+
+		// }

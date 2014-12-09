@@ -40,6 +40,7 @@ var path = svg.append("g")
     .attr("class","graphline")
     .datum(data);
 
+// HERE
 var increaseConfusion = function(array){ 
     confused+= array.length; 
     console.log(confused);
@@ -56,6 +57,7 @@ function update() {
   // y.domain([0, d3.max(data)]);
 
   // push the accumulated confused onto the back, and reset the confused
+  // HERE
   data.push(confused);
   decayConfused();
 

@@ -22,7 +22,7 @@ angular
 			}
 
 			function confusedStudent (name){
-
+				
 				socket.emit("confusion", {
 					lectureID: "RECURSION",
 					studentID: name

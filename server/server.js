@@ -30,8 +30,10 @@ db.once('open', function callback () {
 //////
 
 io.on('connection', function(socket){
+  
   console.log('a user connected');
   io.emit("event", {it: "works"});
+  
   socket.on('confusion', function(data) {
   	console.log("COOOONNNFUUUSIIIOOOONNNN!");
   	console.log(data);
