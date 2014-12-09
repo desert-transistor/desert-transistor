@@ -1,6 +1,6 @@
-# Project Name
+# Confusion Pulse
 
-> Pithy project description
+> Confusion Pulse allows teachers to model class understanding real time using dynamically generated data. Students can anonymously notifiy a teacher of their confusion during lecture through the online interface. Teachers can see a real-time graphical representation of the room's general level of understanding and 'pulse'. 
 
 ## Team
 
@@ -20,15 +20,16 @@
 
 ## Usage
 
-> Some usage instructions
+> Currently the app only supports one session at a time. Teachers navigate straight to the /teacher URL to observe the classroom dashboard. Students are directed to the Login page and after authentication are routed to the student interface that allows them to send 'pulses' to the teacher Dashboard. 
 
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Socket.io
+- Mongodb
+- Express 
+- Angular 
+- D3
 
 ## Development
 
@@ -36,11 +37,11 @@
 
 From within the root directory:
 
-```sh
 sudo npm install -g bower
 npm install
 bower install
-```
+nodemon server.js 
+
 
 ### Roadmap
 
