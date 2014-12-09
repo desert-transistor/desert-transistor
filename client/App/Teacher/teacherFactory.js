@@ -9,6 +9,7 @@ angular
 			socket.on("teacher:update", function(data){
 			    confusedStudents.push(data);
 			    calculateConfusion(confusedStudents);
+			    console.log(data.studentID);
 			})
 		
 	  	return {

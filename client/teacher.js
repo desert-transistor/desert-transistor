@@ -64,7 +64,7 @@ function update() {
   // push the accumulated confused onto the back, and reset the confused
   calculateConfusion();
   data.push(confused);
-  console.log(confused);
+  // console.log(confused);
 
   // redraw the line
   path
