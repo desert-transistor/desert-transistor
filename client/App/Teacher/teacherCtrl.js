@@ -3,17 +3,17 @@ angular
 	  .module('TeacherController', [])
 	  .controller('TeacherController', ['$scope', 'teacherFactory', function($scope, teacherFactory){
 
-		$scope.confusedStudents = teacherFactory.confusedStudents;
+			$scope.confusedStudents = teacherFactory.confusedStudents;
 
-		teacherFactory.updateTeacher();
+			teacherFactory.updateTeacher();
 
-		$scope.updateTeacher = teacherFactory.updateTeacher;
+			$scope.updateTeacher = teacherFactory.updateTeacher;
 
-		// studentFactory.connect();
+			// studentFactory.connect();
 
-		// console.log("adfadsf");
+			// console.log("adfadsf");
 
-		// $scope.confusedStudent = studentFactory.confusedStudent;
+			// $scope.confusedStudent = studentFactory.confusedStudent;
 	  
 	  }])
 
