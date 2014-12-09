@@ -1,25 +1,25 @@
 angular
-	  .module('teacherFactory', [])
-	  .factory('teacherFactory',[ function(){
+  .module('teacherFactory', [])
+  .factory('teacherFactory',[ function(){
 
-		var socket = io();
+	var socket = io();
 
-		var confusedStudents = [];
+	var confusedStudents = [];
 
-		function updateTeacher (){
+	function updateTeacher (){
 
-			socket.on("teacherUpdate", function(data){
-			    console.log("confusedStudents");
-			    confusedStudents.push(data);
-			    increaseConfusion(confusedStudents);
-			    console.log(confusedStudents);
-			})
-		}
+		socket.on("teacherUpdate", function(data){
+	    console.log("confusedStudents");
+	    confusedStudents.push(data);
+	    increaseConfusion(confusedStudents);
+	    console.log(confusedStudents[confusedStudents.length - 1].studentID);
+		})
+	}
 
-	  	return {
-	  		updateTeacher: updateTeacher,
-	  		confusedStudents: confusedStudents
-	  	};
+  	return {
+  		updateTeacher: updateTeacher,
+  		confusedStudents: confusedStudents
+  	};
 
-	  }]);
+  }]);
 
